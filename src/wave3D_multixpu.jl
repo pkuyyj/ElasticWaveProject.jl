@@ -1,6 +1,7 @@
 # # Elastic Wave 3D
 const USE_GPU = false  # Use GPU? If this is set false, then no GPU needs to be available
 
+# ## ParallelStencil Initialization
 using ParallelStencil
 using ParallelStencil.FiniteDifferences3D
 @static if USE_GPU
@@ -13,6 +14,7 @@ default(size=(1400, 800), framestyle=:box, label=false, grid=false, lw=6, labelf
 
 import MPI
 
+# ## Parallel Functions
 @parallel function compute_V!(Vx::Data.Array, Vy::Data.Array, Vz::Data.Array, Sxx::Data.Array, Syy::Data.Array, Szz::Data.Array, Sxy::Data.Array, Sxz::Data.Array, Syz::Data.Array, dt::Data.Number, ρ::Data.Number, dx::Data.Number, dy::Data.Number, dz::Data.Number)
     @inn(Vx) = @inn(Vx) + dt/ρ * (@d_xi(Sxx)/dx + @d_yi(Sxy)/dy + @d_zi(Sxz)/dz)
     @inn(Vy) = @inn(Vy) + dt/ρ * (@d_xi(Sxy)/dx + @d_yi(Syy)/dy + @d_zi(Syz)/dz)
@@ -46,6 +48,7 @@ function save_array(Aname,A)
     out = open(fname, "w"); write(out, A); close(out)
 end
 
+# ## Main function
 """
 
     Elastic 3D function on multiple CPU/GPU

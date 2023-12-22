@@ -106,3 +106,12 @@ The 3D stress are also shown in this animation of contour plot:
 
 ## Discussion, Conclusion and Outlook
 The project substantiates the intricate characteristics of elastic waves, illustrating that under specific conditions, they can be distilled into more manageable wave equations. This revelation holds significant potential for deepening our comprehension of natural phenomena and for refining seismic analytical methods. Prospective endeavors could venture into examining more sophisticated initial states and expanding the system's scale. Surface waves, a particularly fascinating facet of elastic waves within the realm of seismology, warrant further attention. It would be particularly beneficial to visualize surface waves through displacement plots.
+
+## References
+- ADSeismic Documentation. (2023). _Elastic-Wave Simulation_. Retrieved from [https://docs.juliahub.com/ADSeismic/almGG/0.4.0/forward_simulation/#Elastic-Wave-Simulation-1](https://docs.juliahub.com/ADSeismic/almGG/0.4.0/forward_simulation/#Elastic-Wave-Simulation-1).
+
+- Omlins. (2023). _ParallelStencil.jl_. Retrieved from [https://github.com/omlins/ParallelStencil.jl/blob/main/miniapps/acoustic_waves_multixpu/acoustic3D_multixpu.jl](https://github.com/omlins/ParallelStencil.jl/blob/main/miniapps/acoustic_waves_multixpu/acoustic3D_multixpu.jl).
+
+- Belonosov, M., Kostin, V., Neklyudov, D., & Tcheverda, V. (2018). _3D numerical simulation of elastic waves with a frequency-domain iterative solver_. Geophysics, 83(6), T333-T344.
+
+- Tang, J. H., Brossier, R., & Métivier, L. (2022). _Fully scalable solver for frequency-domain visco-elastic wave equations in 3D heterogeneous media: A controllability approach_. Journal of Computational Physics, 468, 111514.
