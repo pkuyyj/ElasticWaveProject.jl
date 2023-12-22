@@ -21,7 +21,7 @@ include("../src/wave3D_multixpu.jl")
     # init
     Sxx           = Data.Array([stress * exp((-xc[ix]^2 - yc[iy]^2 - (zc[iz] + lz / 2)^2)/ (2 * source_radius^2)) for ix = 1:nx, iy = 1:ny, iz = 1:nz])
     
-    @test @inn ≈ Sxx_ori  # Use ≈ (isapprox) for comparing floating point numbers
+    @test @inn(Sxx) ≈ Sxx[2:end,2:end,2:end] # Use ≈ (isapprox) for comparing floating point numbers
 end
 
 """

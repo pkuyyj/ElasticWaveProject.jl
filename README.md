@@ -59,7 +59,7 @@ We use two damping factors `damping_sxx` and `damping_sxy` which stands for the 
 ### Installation
 
 ```bash
-bash src/install.jl
+bash script/install.sh
 ```
 
 ### Slurm submission on Piz Daint
