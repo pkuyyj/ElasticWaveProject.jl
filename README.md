@@ -13,9 +13,9 @@ This document provides an overview of the simulation of elastic waves using 3D w
 The governing equations for the elastic wave propagation are as follows:
 
 ```plaintext
-ρ ∂v_z/∂t = ∂S_zz/∂z + ∂S_xz/∂x + ∂S_yz/∂y
-ρ ∂v_x/∂t = ∂S_xz/∂x + ∂S_zz/∂z + ∂S_xy/∂y
+ρ ∂v_x/∂t = ∂S_xz/∂x + ∂S_xx/∂z + ∂S_xy/∂y
 ρ ∂v_y/∂t = ∂S_yz/∂y + ∂S_xy/∂x + ∂S_yy/∂z
+ρ ∂v_z/∂t = ∂S_zz/∂z + ∂S_xz/∂x + ∂S_yz/∂y
 ∂σ_xx/∂t = λ (∂v_x/∂x + ∂v_y/∂y + ∂v_z/∂z) + 2μ ∂v_x/∂x
 ∂σ_yy/∂t = λ (∂v_x/∂x + ∂v_y/∂y + ∂v_z/∂z) + 2μ ∂v_y/∂y
 ∂σ_zz/∂t = λ (∂v_x/∂x + ∂v_y/∂y + ∂v_z/∂z) + 2μ ∂v_z/∂z
