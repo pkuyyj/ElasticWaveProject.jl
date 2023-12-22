@@ -56,7 +56,7 @@ end
     save_bin    - whether save 3D stress of every step in binary or not
 
 """
-@views function elastic3D(nx = 127, lx=120.0, nt=20000, nout=200, save_bin=false)
+@views function elastic3D(;nx = 127, lx=120.0, nt=20000, nout=200, save_bin=false)
     ## Physics
     ly, lz     = lx, lx
     λ, μ       = 4.0, 2.0           # Lame parameters (λ, μ)
@@ -69,10 +69,11 @@ end
     ny, nz     = nx, nx             # numerical grid resolution
     ## Derived numerics
     me, dims, nprocs, coords, comm = init_global_grid(nx, ny, nz) # MPI initialisation
-    select_device()                                               # select one GPU per MPI local rank (if >1 GPU per node)
+    if USE_GPU
+        select_device()             # select one GPU per MPI local rank (if >1 GPU per node)
+    end                             
     dx, dy, dz = lx/(nx_g()-1), ly/(ny_g()-1), lz/(nz_g()-1)      # cell sizes
     ## Array allocations
-    P          = @zeros(nx  ,ny  ,nz  )
     Vx         = @zeros(nx+1,ny  ,nz  )
     Vy         = @zeros(nx  ,ny+1,nz  )
     Vz         = @zeros(nx  ,ny  ,nz+1)
@@ -178,9 +179,6 @@ end
                     frame(anim)
                 end
 
-                if it == nout
-                    print(size(stress,1)," ",size(stress,2)," ",size(stress,3),"\n")
-                end
                 if save_bin
                     save_array(@sprintf("%sout_Stress_%04d", loadpath, iframe+=1), convert.(Float32, Array(stress)))
                 end

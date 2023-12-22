@@ -8,7 +8,7 @@ function runtests()
     printstyled("Testing Elastic Wave 3D.jl\n"; bold=true, color=:white)
 
     run(`$exename -O3 --startup-file=no $(joinpath(testdir, "test3D.jl"))`)
-
+    run(`$exename -O3 --startup-file=no $(joinpath(testdir, "unit_test.jl"))`)
     return 0
 end
 
