@@ -1,6 +1,8 @@
 # Elastic Wave Project
 
-Final project of Yuejiang Yu
+[![Build Status](https://github.com/pkuyyj/ElasticWaveProject.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/pkuyyj/ElasticWaveProject.jl/actions/workflows/CI.yml)
+
+Final project of **Yuejiang Yu**
 
 ## Introduction to Elastic Wave Propagation in 3D
 
@@ -78,11 +80,16 @@ After about 2 minutes, the output should be in `./viz3D_out/`. You can see `wave
 
 Testing is automatically done using Github's CI/CD.
 
+### Documentation
+
+Mostly done using `Literate.jl` with docstrings and comments. Also automatically done using CI/CD. Saved as `./docs/wave3D_multixpu.md`.
+
 ### 3D contour visualization
 
-We need another julia environment with `GLMakie` installed. Then run:
+We need another julia environment with `GLMakie` installed. Put figures into gif and mp4 using Python. We can run:
 ```bash
-julia src/visualize
+julia src/visualize.jl
+python gifgen.py
 ```
 
 ## Results
@@ -91,11 +98,11 @@ We run elastic wave simulation in 3D on 4 GPUs. Time step is set to `20k` with `
 
 ![wave_3D](./docs/wave_3D.gif)
 
-The main difference between elastic wave and acoustic wave is that it has P-waves (Primary waves) and S-waves (Secondary waves). We can clearly see that there are two waves with different speed in the gif plot.
+The main difference between elastic wave and acoustic wave is that it has P-waves (Primary waves) and S-waves (Secondary waves). We can clearly see that there are two waves with different speed in the gif plot. Lame parameters (λ, μ) should be carefully adjusted to avoid gradient explosion.
 
-The 3D stress are also shown in this animation:
+The 3D stress are also shown in this animation of contour plot:
 
 ![wave_3D_contour](./docs/wave_3D_contour.gif)
 
 ## Discussion, Conclusion and Outlook
-The project confirms the complex nature of elastic wave, demonstrating how it can be reduced to simpler wave equations under certain conditions. The results have implications for understanding natural systems and enhancing seismology practices. Future work may explore more complex initialization state, larger system.
+The project substantiates the intricate characteristics of elastic waves, illustrating that under specific conditions, they can be distilled into more manageable wave equations. This revelation holds significant potential for deepening our comprehension of natural phenomena and for refining seismic analytical methods. Prospective endeavors could venture into examining more sophisticated initial states and expanding the system's scale. Surface waves, a particularly fascinating facet of elastic waves within the realm of seismology, warrant further attention. It would be particularly beneficial to visualize surface waves through displacement plots.
