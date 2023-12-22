@@ -2,7 +2,11 @@
 
 ````julia
 const USE_GPU = false  # Use GPU? If this is set false, then no GPU needs to be available
+````
 
+## ParallelStencil Initialization
+
+````julia
 using ParallelStencil
 using ParallelStencil.FiniteDifferences3D
 @static if USE_GPU
@@ -14,7 +18,11 @@ using ImplicitGlobalGrid, Plots, Printf, Statistics
 default(size=(1400, 800), framestyle=:box, label=false, grid=false, lw=6, labelfontsize=20, tickfontsize=20, titlefontsize=24)
 
 import MPI
+````
 
+## Parallel Functions
+
+````julia
 @parallel function compute_V!(Vx::Data.Array, Vy::Data.Array, Vz::Data.Array, Sxx::Data.Array, Syy::Data.Array, Szz::Data.Array, Sxy::Data.Array, Sxz::Data.Array, Syz::Data.Array, dt::Data.Number, ρ::Data.Number, dx::Data.Number, dy::Data.Number, dz::Data.Number)
     @inn(Vx) = @inn(Vx) + dt/ρ * (@d_xi(Sxx)/dx + @d_yi(Sxy)/dy + @d_zi(Sxz)/dz)
     @inn(Vy) = @inn(Vy) + dt/ρ * (@d_xi(Sxy)/dx + @d_yi(Syy)/dy + @d_zi(Syz)/dz)
@@ -47,7 +55,11 @@ function save_array(Aname,A)
     fname = string(Aname, ".bin")
     out = open(fname, "w"); write(out, A); close(out)
 end
+````
 
+## Main function
+
+````julia
 """
 
     Elastic 3D function on multiple CPU/GPU
