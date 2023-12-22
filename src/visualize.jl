@@ -5,8 +5,8 @@ function load_array(Aname, A)
     fid=open(fname, "r"); read!(fid, A); close(fid)
 end
 
-function visualise!(str,i,anim)
-    lx, ly, lz = 40.0, 20.0, 20.0
+function visualise!(str,i,anim,lx=120.0, nt=10000, nout=200)
+    ly, lz = 40.0, 20.0, 20.0
     nz          = 63
     # nx,ny       = 2 * (nz + 1) - 1, nz
     nx,ny,nz    = 122,122,61
@@ -27,13 +27,13 @@ function visualise!(str,i,anim)
     # surf_T = contour!(ax, xc, yc, zc, log_T; alpha=0.1, clims=(cmin,cmax))
 
     
-    save(@sprintf("./viz3D6k_out-damp80m500s4/T_3D_%04d.png",i), fig)
+    save(@sprintf("./viz3D_out/stress_3D_%04d.png",i), fig)
     return fig
 end
 
-anim = Animation("./viz3D6k_out-damp80m500s4",String[])
+anim = Animation("./viz3D_out",String[])
 for i = 1:150
-    str = @sprintf("./viz3D6k_out-damp80m500s4/out_T_%04d", i)
+    str = @sprintf("./viz3D_out/out_Stress_%04d", i)
     fig = visualise!(str,i,anim)
     # frame(anim)
 end
