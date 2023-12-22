@@ -1,5 +1,5 @@
 using Test
-using PorousConvection
+using ElasticWaveProject
 
 function runtests()
     exename = joinpath(Sys.BINDIR, Base.julia_exename())
